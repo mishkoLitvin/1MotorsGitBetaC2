@@ -1,10 +1,10 @@
 ******************************************************************************
-             TMS320C2000 Linker PC v6.2.7                      
+             TMS320C2000 Linker Unix v6.2.7                    
 ******************************************************************************
->> Linked Sat Feb 17 20:29:02 2018
+>> Linked Mon Apr 16 21:28:13 2018
 
 OUTPUT FILE NAME:   <motorsBetaC2.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 003f6b4a
+ENTRY POINT SYMBOL: "_c_int00"  address: 003f6b3c
 
 
 MEMORY CONFIGURATION
@@ -21,7 +21,7 @@ PAGE 0:
   FLASHE                003e4000   00004000  00000000  00004000  RWIX
   FLASHD                003e8000   00004000  00000000  00004000  RWIX
   FLASHC                003ec000   00004000  00000000  00004000  RWIX
-  FLASHA                003f4000   00003f80  00002fab  00000fd5  RWIX
+  FLASHA                003f4000   00003f80  00002fa2  00000fde  RWIX
   CSM_RSVD              003f7f80   00000076  00000000  00000076  RWIX
   BEGIN                 003f7ff6   00000002  00000002  00000000  RWIX
   CSM_PWL_P0            003f7ff8   00000008  00000000  00000008  RWIX
@@ -57,32 +57,32 @@ section   page    origin      length       input sections
 
 ramfuncs   0    00008000    00000000     UNINITIALIZED
 
-.text      0    003f4000    00002bd3     
-                  003f4000    00001767     main.obj (.text)
-                  003f5767    00000e4e     main.obj (.text:retain)
-                  003f65b5    000002ca     clk.obj (.text)
-                  003f687f    0000018a     gpio.obj (.text)
-                  003f6a09    00000088     rts2800_fpu32.lib : fs_div.obj (.text)
-                  003f6a91    00000061                       : cos.obj (.text)
-                  003f6af2    00000058                       : sin.obj (.text)
-                  003f6b4a    00000046                       : boot.obj (.text)
-                  003f6b90    00000019                       : args_main.obj (.text)
-                  003f6ba9    00000019                       : exit.obj (.text)
-                  003f6bc2    00000009                       : _lock.obj (.text)
-                  003f6bcb    00000008     F2806x_CodeStartBranch.obj (.text)
+.text      0    003f4000    00002bc5     
+                  003f4000    00001695     main.obj (.text)
+                  003f5695    00000efb     main.obj (.text:retain)
+                  003f6590    000002cc     clk.obj (.text)
+                  003f685c    0000019f     gpio.obj (.text)
+                  003f69fb    00000088     rts2800_fpu32.lib : fs_div.obj (.text)
+                  003f6a83    00000061                       : cos.obj (.text)
+                  003f6ae4    00000058                       : sin.obj (.text)
+                  003f6b3c    00000046                       : boot.obj (.text)
+                  003f6b82    00000019                       : args_main.obj (.text)
+                  003f6b9b    00000019                       : exit.obj (.text)
+                  003f6bb4    00000009                       : _lock.obj (.text)
+                  003f6bbd    00000008     F2806x_CodeStartBranch.obj (.text)
 
-.econst    0    003f6bd4    00000200     
-                  003f6bd4    00000100     main.obj (.econst:.string:_CRC_TABLE)
-                  003f6cd4    00000100     main.obj (.econst)
+.econst    0    003f6bc6    00000200     
+                  003f6bc6    00000100     main.obj (.econst:.string:_CRC_TABLE)
+                  003f6cc6    00000100     main.obj (.econst)
 
-.cinit     0    003f6dd4    000001b8     
-                  003f6dd4    000001a2     main.obj (.cinit)
-                  003f6f76    0000000a     rts2800_fpu32.lib : _lock.obj (.cinit)
-                  003f6f80    0000000a                       : exit.obj (.cinit)
-                  003f6f8a    00000002     --HOLE-- [fill = 0]
+.cinit     0    003f6dc6    000001bd     
+                  003f6dc6    000001a7     main.obj (.cinit)
+                  003f6f6d    0000000a     rts2800_fpu32.lib : _lock.obj (.cinit)
+                  003f6f77    0000000a                       : exit.obj (.cinit)
+                  003f6f81    00000002     --HOLE-- [fill = 0]
 
-.switch    0    003f6f8c    00000020     
-                  003f6f8c    00000020     main.obj (.switch:_adcRead)
+.switch    0    003f6f84    00000020     
+                  003f6f84    00000020     main.obj (.switch:_adcRead)
 
 codestart 
 *          0    003f7ff6    00000002     
@@ -145,56 +145,57 @@ address     data page           name
 00009022     240 (00009000)     _SAAD_CTRL
 00009023     240 (00009000)     _SAAD_ST_BITS
 00009024     240 (00009000)     _SAAD_CTRL_BITS
-00009026     240 (00009000)     _alpha1
-00009028     240 (00009000)     _alpha
-0000902a     240 (00009000)     _vel
-0000902c     240 (00009000)     _speed
-0000902e     240 (00009000)     _SAAD_CTRL_ALL
-00009030     240 (00009000)     _sysCtrlRegs
-00009032     240 (00009000)     _gpioS
-00009034     240 (00009000)     _adcRegs
-00009036     240 (00009000)     _clkS
-00009038     240 (00009000)     _adcResRegs
-0000903a     240 (00009000)     _mcbspData
+00009026     240 (00009000)     _speed
+00009028     240 (00009000)     _alpha1
+0000902a     240 (00009000)     _alpha
+0000902c     240 (00009000)     _vel
+0000902e     240 (00009000)     _acel
+00009030     240 (00009000)     _SAAD_CTRL_ALL
+00009032     240 (00009000)     _adcRegs
+00009034     240 (00009000)     _adcResRegs
+00009036     240 (00009000)     _gpioS
+00009038     240 (00009000)     _mcbspData
+0000903a     240 (00009000)     _sysCtrlRegs
 0000903c     240 (00009000)     _time
 0000903e     240 (00009000)     _jj
 
 00009040     241 (00009040)     _i
-00009042     241 (00009040)     _j
+00009042     241 (00009040)     _velCoef
 00009044     241 (00009040)     _mode1cnt
 00009046     241 (00009040)     _mode3cnt
-00009048     241 (00009040)     _acel
-0000904a     241 (00009040)     _timer1cnt
+00009048     241 (00009040)     _clkS
+0000904a     241 (00009040)     _dt
 0000904c     241 (00009040)     _timeUp
-0000904e     241 (00009040)     _dt
+0000904e     241 (00009040)     _j
 00009050     241 (00009040)     _timer0cnt
-00009052     241 (00009040)     _spiaRegs
-00009054     241 (00009040)     _CpuTimer0Regs
-00009056     241 (00009040)     _tempData2
-00009058     241 (00009040)     _CpuTimer1Regs
-0000905a     241 (00009040)     _interrupS
-0000905c     241 (00009040)     _sciaRegs
-0000905e     241 (00009040)     _xIntruptRegs
+00009052     241 (00009040)     _timer1cnt
+00009054     241 (00009040)     _spiaRegs
+00009056     241 (00009040)     _CpuTimer1Regs
+00009058     241 (00009040)     _CpuTimer0Regs
+0000905a     241 (00009040)     _CpuTimer2Regs
+0000905c     241 (00009040)     _interrupS
+0000905e     241 (00009040)     _sciaRegs
 00009060     241 (00009040)     _spiData
-00009062     241 (00009040)     _interrupSVectTable
+00009062     241 (00009040)     _xIntruptRegs
 00009064     241 (00009040)     _mcbspRegs
 00009066     241 (00009040)     _flashRegs
 00009068     241 (00009040)     _START_BIT
-0000906a     241 (00009040)     _tempData1
-0000906c     241 (00009040)     _START_BIT_BITS
-0000906e     241 (00009040)     _CpuTimer2Regs
-00009070     241 (00009040)     _refD
-00009074     241 (00009040)     _iTot
-00009078     241 (00009040)     _refQ
-0000907c     241 (00009040)     _pwmValues
+0000906a     241 (00009040)     _START_BIT_BITS
+0000906c     241 (00009040)     _tempData2
+0000906e     241 (00009040)     _interrupSVectTable
+00009070     241 (00009040)     _tempData1
+00009072     241 (00009040)     _refQ
+00009076     241 (00009040)     _iTot
+0000907a     241 (00009040)     _refD
 
-00009080     242 (00009080)     _dqP
-00009088     242 (00009080)     _alBe
-00009090     242 (00009080)     _dq
-00009098     242 (00009080)     _saadFrameSend
-000090a0     242 (00009080)     _alBeI
-000090a8     242 (00009080)     _saadFrameResive
-000090b0     242 (00009080)     _pwmRegS
+00009080     242 (00009080)     _pwmValues
+00009084     242 (00009080)     _dq
+0000908c     242 (00009080)     _dqP
+00009094     242 (00009080)     _saadFrameSend
+0000909c     242 (00009080)     _saadFrameResive
+000090a4     242 (00009080)     _alBe
+000090ac     242 (00009080)     _alBeI
+000090b4     242 (00009080)     _pwmRegS
 
 000090c0     243 (000090c0)     _pwmHandle
 000090cc     243 (000090c0)     _abcI
@@ -208,11 +209,11 @@ address     data page           name
 
 000091c0     247 (000091c0)     _spiModule
 
-00009200     248 (00009200)     _pidD
+00009200     248 (00009200)     _pidVel
 
-00009280     24a (00009280)     _pidQ
+00009280     24a (00009280)     _pidD
 
-00009300     24c (00009300)     _pidVel
+00009300     24c (00009300)     _pidQ
 
 00009380     24e (00009380)     _AMCconfArr
 
@@ -221,7 +222,7 @@ address     data page           name
 00009404     250 (00009400)     ___TI_cleanup_ptr
 00009406     250 (00009400)     ___TI_dtors_ptr
 
-003f6cd4    fdb3 (003f6cc0)     _PieVectTableInit
+003f6cc6    fdb3 (003f6cc0)     _PieVectTableInit
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -229,202 +230,202 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 address    name
 --------   ----
 003f4000   .text
-003f6ba9   C$$EXIT
-003f6a09   FS$$DIV
-003f5825   _ADCINT1_ISR
-003f582f   _ADCINT2_ISR
-003f5a37   _ADCINT3_ISR
-003f5a41   _ADCINT4_ISR
-003f5a4b   _ADCINT5_ISR
-003f5a55   _ADCINT6_ISR
-003f5a5f   _ADCINT7_ISR
-003f5a69   _ADCINT8_ISR
-003f584d   _ADCINT9_ISR
-003f4610   _ADC_config
-003f49d5   _AMCconf
+003f6b9b   C$$EXIT
+003f69fb   FS$$DIV
+003f5766   _ADCINT1_ISR
+003f5771   _ADCINT2_ISR
+003f59ad   _ADCINT3_ISR
+003f59b8   _ADCINT4_ISR
+003f59c3   _ADCINT5_ISR
+003f59ce   _ADCINT6_ISR
+003f59d9   _ADCINT7_ISR
+003f59e4   _ADCINT8_ISR
+003f5792   _ADCINT9_ISR
+003f460a   _ADC_config
+003f49e9   _AMCconf
 00009380   _AMCconfArr
-003f5a73   _CLA1_INT1_ISR
-003f5a7d   _CLA1_INT2_ISR
-003f5a87   _CLA1_INT3_ISR
-003f5a91   _CLA1_INT4_ISR
-003f5a9b   _CLA1_INT5_ISR
-003f5aa5   _CLA1_INT6_ISR
-003f5aaf   _CLA1_INT7_ISR
-003f5ab9   _CLA1_INT8_ISR
-003f65b5   _CLK_disableAdcClock
-003f65c2   _CLK_disableClaClock
-003f65cf   _CLK_disableClkIn
-003f65db   _CLK_disableCompClock
-003f65e7   _CLK_disableCpuTimerClock
-003f65f6   _CLK_disableCrystalOsc
-003f6602   _CLK_disableEcanaClock
-003f660f   _CLK_disableEcap1Clock
-003f661c   _CLK_disableEqep1Clock
-003f6629   _CLK_disableGpioInputClock
-003f6636   _CLK_disableHrPwmClock
-003f6643   _CLK_disableI2cClock
-003f6650   _CLK_disableLinAClock
-003f665d   _CLK_disableOsc1
-003f6669   _CLK_disableOsc1HaltMode
-003f6675   _CLK_disableOsc2
-003f6681   _CLK_disableOsc2HaltMode
-003f668d   _CLK_disablePwmClock
-003f669e   _CLK_disableSciaClock
-003f66ab   _CLK_disableSpiaClock
-003f66b8   _CLK_disableSpibClock
-003f66c2   _CLK_disableTbClockSync
-003f66cf   _CLK_disableWatchDogHaltMode
-003f66db   _CLK_enableAdcClock
-003f66e8   _CLK_enableClaClock
-003f6744   _CLK_enableClkIn
-003f66f5   _CLK_enableCompClock
-003f6703   _CLK_enableCpuTimerClock
-003f6711   _CLK_enableCrystalOsc
-003f671d   _CLK_enableEcanaClock
-003f6737   _CLK_enableEcap1Clock
-003f672a   _CLK_enableEqep1Clock
-003f6750   _CLK_enableGpioInputClock
-003f675d   _CLK_enableHrPwmClock
-003f676a   _CLK_enableI2cClock
-003f6777   _CLK_enableLinAClock
-003f6784   _CLK_enableOsc1
-003f6790   _CLK_enableOsc1HaltMode
-003f679c   _CLK_enableOsc2
-003f67a8   _CLK_enableOsc2HaltMode
-003f67b4   _CLK_enablePwmClock
-003f67c4   _CLK_enableSciaClock
-003f67d1   _CLK_enableSpiaClock
-003f67de   _CLK_enableSpibClock
-003f67eb   _CLK_enableTbClockSync
-003f67f8   _CLK_enableWatchDogHaltMode
-003f6804   _CLK_init
-003f6811   _CLK_setClkOutPreScaler
-003f6821   _CLK_setLowSpdPreScaler
-003f683f   _CLK_setOsc2Src
-003f682f   _CLK_setOscSrc
-003f684f   _CLK_setTimer2PreScale
-003f685f   _CLK_setTimer2Src
-003f686f   _CLK_setWatchDogSrc
+003f59ef   _CLA1_INT1_ISR
+003f59fa   _CLA1_INT2_ISR
+003f5a05   _CLA1_INT3_ISR
+003f5a10   _CLA1_INT4_ISR
+003f5a1b   _CLA1_INT5_ISR
+003f5a26   _CLA1_INT6_ISR
+003f5a31   _CLA1_INT7_ISR
+003f5a3c   _CLA1_INT8_ISR
+003f6590   _CLK_disableAdcClock
+003f659d   _CLK_disableClaClock
+003f65aa   _CLK_disableClkIn
+003f65b6   _CLK_disableCompClock
+003f65c2   _CLK_disableCpuTimerClock
+003f65d1   _CLK_disableCrystalOsc
+003f65dd   _CLK_disableEcanaClock
+003f65ea   _CLK_disableEcap1Clock
+003f65f7   _CLK_disableEqep1Clock
+003f6604   _CLK_disableGpioInputClock
+003f6611   _CLK_disableHrPwmClock
+003f661e   _CLK_disableI2cClock
+003f662b   _CLK_disableLinAClock
+003f6638   _CLK_disableOsc1
+003f6644   _CLK_disableOsc1HaltMode
+003f6650   _CLK_disableOsc2
+003f665c   _CLK_disableOsc2HaltMode
+003f6668   _CLK_disablePwmClock
+003f6679   _CLK_disableSciaClock
+003f6686   _CLK_disableSpiaClock
+003f6693   _CLK_disableSpibClock
+003f669d   _CLK_disableTbClockSync
+003f66aa   _CLK_disableWatchDogHaltMode
+003f66b6   _CLK_enableAdcClock
+003f66c3   _CLK_enableClaClock
+003f671f   _CLK_enableClkIn
+003f66d0   _CLK_enableCompClock
+003f66de   _CLK_enableCpuTimerClock
+003f66ec   _CLK_enableCrystalOsc
+003f66f8   _CLK_enableEcanaClock
+003f6712   _CLK_enableEcap1Clock
+003f6705   _CLK_enableEqep1Clock
+003f672b   _CLK_enableGpioInputClock
+003f6738   _CLK_enableHrPwmClock
+003f6745   _CLK_enableI2cClock
+003f6752   _CLK_enableLinAClock
+003f675f   _CLK_enableOsc1
+003f676b   _CLK_enableOsc1HaltMode
+003f6777   _CLK_enableOsc2
+003f6783   _CLK_enableOsc2HaltMode
+003f678f   _CLK_enablePwmClock
+003f679f   _CLK_enableSciaClock
+003f67ac   _CLK_enableSpiaClock
+003f67b9   _CLK_enableSpibClock
+003f67c6   _CLK_enableTbClockSync
+003f67d3   _CLK_enableWatchDogHaltMode
+003f67df   _CLK_init
+003f67ee   _CLK_setClkOutPreScaler
+003f67fe   _CLK_setLowSpdPreScaler
+003f681c   _CLK_setOsc2Src
+003f680c   _CLK_setOscSrc
+003f682c   _CLK_setTimer2PreScale
+003f683c   _CLK_setTimer2Src
+003f684c   _CLK_setWatchDogSrc
 00009007   _COMMAND_BYTE
 00009004   _COMMAND_BYTE_BITS
 00009000   _CTRLSUM
 0000900a   _CTRLSUM_BITS
-003f4c15   _ConfigCpuTimer0
-003f4c3b   _ConfigCpuTimer1
-003f4c60   _ConfigCpuTimer2
-00009054   _CpuTimer0Regs
-00009058   _CpuTimer1Regs
-0000906e   _CpuTimer2Regs
+003f4c33   _ConfigCpuTimer0
+003f4c59   _ConfigCpuTimer1
+003f4c7e   _ConfigCpuTimer2
+00009058   _CpuTimer0Regs
+00009056   _CpuTimer1Regs
+0000905a   _CpuTimer2Regs
 00009009   _DATA
-003f577b   _DATALOG_ISR
+003f56ab   _DATALOG_ISR
 0000900c   _DATA_BITS
-003f59ab   _DINTCH1_ISR
-003f59b5   _DINTCH2_ISR
-003f59bf   _DINTCH3_ISR
-003f59c9   _DINTCH4_ISR
-003f59d3   _DINTCH5_ISR
-003f59dd   _DINTCH6_ISR
-003f4493   _DisableDog
-003f5a23   _ECAN0INTA_ISR
-003f5a2d   _ECAN1INTA_ISR
-003f590b   _ECAP1_INT_ISR
-003f5915   _ECAP2_INT_ISR
-003f591f   _ECAP3_INT_ISR
-003f5ae1   _EMPTY_ISR
-003f578f   _EMUINT_ISR
-003f58bb   _EPWM1_INT_ISR
-003f586b   _EPWM1_TZINT_ISR
-003f58c5   _EPWM2_INT_ISR
-003f5875   _EPWM2_TZINT_ISR
-003f58cf   _EPWM3_INT_ISR
-003f587f   _EPWM3_TZINT_ISR
-003f58d9   _EPWM4_INT_ISR
-003f5889   _EPWM4_TZINT_ISR
-003f58e3   _EPWM5_INT_ISR
-003f5893   _EPWM5_TZINT_ISR
-003f58ed   _EPWM6_INT_ISR
-003f589d   _EPWM6_TZINT_ISR
-003f58f7   _EPWM7_INT_ISR
-003f58a7   _EPWM7_TZINT_ISR
-003f5901   _EPWM8_INT_ISR
-003f58b1   _EPWM8_TZINT_ISR
-003f593d   _EQEP1_INT_ISR
-003f5947   _EQEP2_INT_ISR
-003f687f   _GPIO_init
-003f6917   _GPIO_read
-003f68c8   _GPIO_setDirection
-003f6904   _GPIO_setExtInt
-003f6944   _GPIO_setHigh
-003f6962   _GPIO_setLow
-003f6980   _GPIO_setMode
-003f688c   _GPIO_setPullup
-003f69eb   _GPIO_toggle
-003f6588   _GYRO_X_isr
-003f5929   _HRCAP1_INT_ISR
-003f5933   _HRCAP2_INT_ISR
-003f5951   _HRCAP3_INT_ISR
-003f595b   _HRCAP4_INT_ISR
-003f59e7   _I2CINT1A_ISR
-003f59f1   _I2CINT2A_ISR
-003f57a3   _ILLEGAL_ISR
-003f5767   _INT13_ISR
-003f5771   _INT14_ISR
-003f449d   _InitPll
-003f5ad7   _LUF_ISR
-003f5acd   _LVF_ISR
-003f5997   _MRINTA_ISR
-003f59a1   _MXINTA_ISR
-003f5799   _NMI_ISR
-003f5aee   _PIE_RESERVED
+003f5913   _DINTCH1_ISR
+003f591e   _DINTCH2_ISR
+003f5929   _DINTCH3_ISR
+003f5934   _DINTCH4_ISR
+003f593f   _DINTCH5_ISR
+003f594a   _DINTCH6_ISR
+003f448d   _DisableDog
+003f5997   _ECAN0INTA_ISR
+003f59a2   _ECAN1INTA_ISR
+003f5863   _ECAP1_INT_ISR
+003f586e   _ECAP2_INT_ISR
+003f5879   _ECAP3_INT_ISR
+003f5a68   _EMPTY_ISR
+003f56c1   _EMUINT_ISR
+003f580b   _EPWM1_INT_ISR
+003f57b3   _EPWM1_TZINT_ISR
+003f5816   _EPWM2_INT_ISR
+003f57be   _EPWM2_TZINT_ISR
+003f5821   _EPWM3_INT_ISR
+003f57c9   _EPWM3_TZINT_ISR
+003f582c   _EPWM4_INT_ISR
+003f57d4   _EPWM4_TZINT_ISR
+003f5837   _EPWM5_INT_ISR
+003f57df   _EPWM5_TZINT_ISR
+003f5842   _EPWM6_INT_ISR
+003f57ea   _EPWM6_TZINT_ISR
+003f584d   _EPWM7_INT_ISR
+003f57f5   _EPWM7_TZINT_ISR
+003f5858   _EPWM8_INT_ISR
+003f5800   _EPWM8_TZINT_ISR
+003f589a   _EQEP1_INT_ISR
+003f58a5   _EQEP2_INT_ISR
+003f685c   _GPIO_init
+003f68fa   _GPIO_read
+003f68a9   _GPIO_setDirection
+003f68e7   _GPIO_setExtInt
+003f692a   _GPIO_setHigh
+003f694a   _GPIO_setLow
+003f696a   _GPIO_setMode
+003f686b   _GPIO_setPullup
+003f69db   _GPIO_toggle
+003f6563   _GYRO_X_isr
+003f5884   _HRCAP1_INT_ISR
+003f588f   _HRCAP2_INT_ISR
+003f58b0   _HRCAP3_INT_ISR
+003f58bb   _HRCAP4_INT_ISR
+003f5955   _I2CINT1A_ISR
+003f5960   _I2CINT2A_ISR
+003f56d7   _ILLEGAL_ISR
+003f5695   _INT13_ISR
+003f56a0   _INT14_ISR
+003f4497   _InitPll
+003f5a5d   _LUF_ISR
+003f5a52   _LVF_ISR
+003f58fd   _MRINTA_ISR
+003f5908   _MXINTA_ISR
+003f56cc   _NMI_ISR
+003f5a75   _PIE_RESERVED
 0000900b   _POSITION
 00009021   _POSITION_BITS
-003f6cd4   _PieVectTableInit
-003f5785   _RTOSINT_ISR
+003f6cc6   _PieVectTableInit
+003f56b6   _RTOSINT_ISR
 00008000   _RamfuncsLoadEnd
 00000000   _RamfuncsLoadSize
 00008000   _RamfuncsLoadStart
 00008000   _RamfuncsRunStart
 00009022   _SAAD_CTRL
-0000902e   _SAAD_CTRL_ALL
+00009030   _SAAD_CTRL_ALL
 00009024   _SAAD_CTRL_BITS
 00009003   _SAAD_ST
 00009023   _SAAD_ST_BITS
 00009001   _SAAD_TESTS_BITS
 00009005   _SAAD_TEST_RES
 00009002   _SAAD_TEST_RES_BITS
-003f59fb   _SCIRXINTA_ISR
-003f5a0f   _SCIRXINTB_ISR
-003f5a05   _SCITXINTA_ISR
-003f5a19   _SCITXINTB_ISR
-003f6574   _SCI_RX_isr
-003f596f   _SPIRXINTA_ISR
-003f5983   _SPIRXINTB_ISR
-003f5979   _SPITXINTA_ISR
-003f598d   _SPITXINTB_ISR
-003f5537   _SPI_RX_isr
+003f596b   _SCIRXINTA_ISR
+003f5981   _SCIRXINTB_ISR
+003f5976   _SCITXINTA_ISR
+003f598c   _SCITXINTB_ISR
+003f654f   _SCI_RX_isr
+003f58d1   _SPIRXINTA_ISR
+003f58e7   _SPIRXINTB_ISR
+003f58dc   _SPITXINTA_ISR
+003f58f2   _SPITXINTB_ISR
+003f5577   _SPI_RX_isr
 00009068   _START_BIT
-0000906c   _START_BIT_BITS
-003f4485   _ServiceDog
-003f5857   _TINT0_ISR
-003f5965   _USB0_INT_ISR
-003f5807   _USER10_ISR
-003f5811   _USER11_ISR
-003f581b   _USER12_ISR
-003f57ad   _USER1_ISR
-003f57b7   _USER2_ISR
-003f57c1   _USER3_ISR
-003f57cb   _USER4_ISR
-003f57d5   _USER5_ISR
-003f57df   _USER6_ISR
-003f57e9   _USER7_ISR
-003f57f3   _USER8_ISR
-003f57fd   _USER9_ISR
+0000906a   _START_BIT_BITS
+003f447f   _ServiceDog
+003f579d   _TINT0_ISR
+003f58c6   _USB0_INT_ISR
+003f5745   _USER10_ISR
+003f5750   _USER11_ISR
+003f575b   _USER12_ISR
+003f56e2   _USER1_ISR
+003f56ed   _USER2_ISR
+003f56f8   _USER3_ISR
+003f5703   _USER4_ISR
+003f570e   _USER5_ISR
+003f5719   _USER6_ISR
+003f5724   _USER7_ISR
+003f572f   _USER8_ISR
+003f573a   _USER9_ISR
 00009006   _VELOCITY
 00009008   _VELOCITY_BITS
-003f5861   _WAKEINT_ISR
-003f5839   _XINT1_ISR
-003f5843   _XINT2_ISR
-003f5ac3   _XINT3_ISR
+003f57a8   _WAKEINT_ISR
+003f577c   _XINT1_ISR
+003f5787   _XINT2_ISR
+003f5a47   _XINT3_ISR
 00000350   __STACK_END
 00000300   __STACK_SIZE
 00000001   __TI_args_main
@@ -432,168 +433,169 @@ address    name
 00009406   ___TI_dtors_ptr
 ffffffff   ___binit__
 ffffffff   ___c_args__
-003f6dd4   ___cinit__
-003f6bd3   ___etext__
+003f6dc6   ___cinit__
+003f6bc5   ___etext__
 ffffffff   ___pinit__
 003f4000   ___text__
-003f6b90   __args_main
+003f6b82   __args_main
 00009402   __lock
-003f6bca   __nop
-003f6bc6   __register_lock
-003f6bc2   __register_unlock
+003f6bbc   __nop
+003f6bb8   __register_lock
+003f6bb4   __register_unlock
 00000050   __stack
 00009400   __unlock
 000090d8   _abc
 000090cc   _abcI
-003f6ba9   _abort
-00009048   _acel
-003f4607   _adcInit
-003f478a   _adcRead
-00009034   _adcRegs
+003f6b9b   _abort
+0000902e   _acel
+003f4601   _adcInit
+003f4786   _adcRead
+00009032   _adcRegs
 00009100   _adcRes
-00009038   _adcResRegs
-003f659c   _adc_X_ISR
-00009088   _alBe
-000090a0   _alBeI
-00009028   _alpha
-00009026   _alpha1
-003f51c8   _alphaF
+00009034   _adcResRegs
+003f6577   _adc_X_ISR
+000090a4   _alBe
+000090ac   _alBeI
+0000902a   _alpha
+00009028   _alpha1
+003f51fe   _alphaF
 0000900d   _apsL
 0000900e   _apsR
-003f6b4a   _c_int00
-003f4e9a   _calcPWM
-003f5606   _calcSpeed
-003f4fda   _clarke
-003f5084   _clarkeInv
-003f47f4   _clkInit
-00009036   _clkS
-003f48d8   _clkg_delay_loop
-003f6a91   _cos
+003f6b3c   _c_int00
+003f4eba   _calcPWM
+003f565a   _calcSpeed
+003f5001   _clarke
+003f50ab   _clarkeInv
+003f4802   _clkInit
+00009048   _clkS
+003f48e8   _clkg_delay_loop
+003f6a83   _cos
 00009018   _counter
-003f5b02   _cpu_timer0_isr
-003f5fd8   _cpu_timer1_isr
-003f5f44   _cpu_timer2_isr
-003f4e7a   _crc8DATA
-003f4e3a   _crc8POS
-003f4e5a   _crc8VEL
+003f5a8b   _cpu_timer0_isr
+003f5f83   _cpu_timer1_isr
+003f5eef   _cpu_timer2_isr
+003f4e9a   _crc8DATA
+003f4e5a   _crc8POS
+003f4e7a   _crc8VEL
 00009017   _delay
-003f48c2   _delay_loop
-003f4df8   _disablePWM
-00009090   _dq
-00009080   _dqP
-0000904e   _dt
-003f6bab   _exit
-003f4437   _flashInit
+003f48d0   _delay_loop
+003f4e16   _disablePWM
+00009084   _dq
+0000908c   _dqP
+0000904a   _dt
+003f6b9d   _exit
+003f4431   _flashInit
 00009066   _flashRegs
-003f443d   _flashSetup
-003f4e2c   _getMaxPWMVal
-003f41ee   _gpioInit
-00009032   _gpioS
-003f4a99   _gyroVerifyL2G2IS
+003f4437   _flashSetup
+003f4e4c   _getMaxPWMVal
+003f41e8   _gpioInit
+00009036   _gpioS
+003f4ab5   _gyroVerifyL2G2IS
 00009040   _i
-00009074   _iTot
-0000905a   _interrupS
-003f4bcc   _interrupSDefVectTableInit
-00009062   _interrupSVectTable
-003f4bac   _interrupsCpuSetup
-003f4b57   _interrupsCtrlInit
-003f4b4b   _interrupsInit
-003f4ba1   _interruptSEnable
-00009042   _j
+00009076   _iTot
+0000905c   _interrupS
+003f4be8   _interrupSDefVectTableInit
+0000906e   _interrupSVectTable
+003f4bc8   _interrupsCpuSetup
+003f4b73   _interrupsCtrlInit
+003f4b67   _interrupsInit
+003f4bbd   _interruptSEnable
+0000904e   _j
 0000903e   _jj
 00009015   _lockDevEn
 00009016   _lockDevSend
-003f5591   _lockDevStart
+003f55d1   _lockDevStart
 00009013   _lockDevStepCount
-003f52df   _main
-003f512e   _makeTest
-003f49d1   _mcbspAddr
-0000903a   _mcbspData
+003f5315   _main
+003f515a   _makeTest
+003f49e5   _mcbspAddr
+00009038   _mcbspData
 00009064   _mcbspRegs
-003f493b   _mcbspSetupSpi
-003f49ad   _mcbsp_read
-003f4992   _mcbsp_write
-003f48ee   _mcbspaInit
-003f48f4   _mcbspaSetup
+003f494d   _mcbspSetupSpi
+003f49c1   _mcbsp_read
+003f49a4   _mcbsp_write
+003f4900   _mcbspaInit
+003f4906   _mcbspaSetup
 00009014   _mode
 00009044   _mode1cnt
 00009046   _mode3cnt
 00009180   _motor0
 00009140   _motor1
 00009012   _moveMode
-003f500e   _park
-003f5049   _parkInv
-003f4f14   _pidCalc
-00009200   _pidD
-00009280   _pidQ
-00009300   _pidVel
-003f4f15   _pid_reg3_calc
+003f5035   _park
+003f5070   _parkInv
+003f4f34   _pidCalc
+00009280   _pidD
+00009300   _pidQ
+00009200   _pidVel
+003f4f35   _pid_reg3_calc
 000090c0   _pwmHandle
-000090b0   _pwmRegS
-003f4c85   _pwmSInit
-003f4c9a   _pwmSetupWTest
-0000907c   _pwmValues
-00009070   _refD
-00009078   _refQ
-003f5af8   _rsvd_ISR
-000090a8   _saadFrameResive
-00009098   _saadFrameSend
+000090b4   _pwmRegS
+003f4ca3   _pwmSInit
+003f4cb8   _pwmSetupWTest
+00009080   _pwmValues
+0000907a   _refD
+00009072   _refQ
+003f5a80   _rsvd_ISR
+0000909c   _saadFrameResive
+00009094   _saadFrameSend
 0000901c   _saadTests
 0000901a   _saadTestsPs
 00009020   _sciCounter
 0000901f   _sciFramePart
 0000901e   _sciSendCnt
-003f4b01   _sciaInit
-003f4b3c   _sciaRead
-0000905c   _sciaRegs
-003f4b07   _sciaSetup
-003f4b41   _sciaWrite
+003f4b1d   _sciaInit
+003f4b58   _sciaRead
+0000905e   _sciaRegs
+003f4b23   _sciaSetup
+003f4b5d   _sciaWrite
 0000900f   _sendDubSCI
 00009011   _sendSCI
-003f45e9   _setExtOsc
-003f459e   _setIntOsc1
-003f45b3   _setIntOsc2
-003f4dd6   _setPWMValues
-003f4e0d   _setPWMValuesArr
+003f45e3   _setExtOsc
+003f4598   _setIntOsc1
+003f45ad   _setIntOsc2
+003f4df4   _setPWMValues
+003f4e2b   _setPWMValuesArr
 0000901d   _setSci
-003f44fc   _setUpPeripheralClocks
-003f45ce   _setXTALOsc
-003f47fd   _setupClks
-003f41f7   _setupGPIOs
-003f4428   _setupGPIOsInterrupt
-003f482e   _setupPeripheralClks
-003f6af2   _sin
-0000902c   _speed
+003f44f6   _setUpPeripheralClocks
+003f45c8   _setXTALOsc
+003f480b   _setupClks
+003f41f1   _setupGPIOs
+003f4422   _setupGPIOsInterrupt
+003f483c   _setupPeripheralClks
+003f6ae4   _sin
+00009026   _speed
 00009060   _spiData
-003f4a8b   _spiDisableFF
-003f4aec   _spiGyroConfL2G2IS
-003f4abf   _spiGyroConfMAX
-003f4a76   _spiInit
+003f4aa7   _spiDisableFF
+003f4b08   _spiGyroConfL2G2IS
+003f4adb   _spiGyroConfMAX
+003f4a92   _spiInit
 000091c0   _spiModule
-003f4a7c   _spiSetupFF
-00009052   _spiaRegs
-003f4f0d   _stopMotor
-00009030   _sysCtrlRegs
-003f4461   _systemInit
-003f4467   _systemSetup
-0000906a   _tempData1
-00009056   _tempData2
+003f4a98   _spiSetupFF
+00009054   _spiaRegs
+003f4f2d   _stopMotor
+0000903a   _sysCtrlRegs
+003f445b   _systemInit
+003f4461   _systemSetup
+00009070   _tempData1
+0000906c   _tempData2
 00009010   _testSciSend
 0000903c   _time
 0000904c   _timeUp
 00009050   _timer0cnt
-0000904a   _timer1cnt
-003f4bf7   _timerInit
-003f4c03   _timerSConfig
-003f41dd   _usDelay
-0000902a   _vel
+00009052   _timer1cnt
+003f4c15   _timerInit
+003f4c21   _timerSConfig
+003f41d7   _usDelay
+0000902c   _vel
+00009042   _velCoef
 00009019   _xData
-0000905e   _xIntruptRegs
+00009062   _xIntruptRegs
 0000901b   _yData
 ffffffff   binit
-003f6dd4   cinit
+003f6dc6   cinit
 003f7ff6   code_start
-003f6bd3   etext
+003f6bc5   etext
 ffffffff   pinit
 
 
@@ -646,54 +648,55 @@ address    name
 00009022   _SAAD_CTRL
 00009023   _SAAD_ST_BITS
 00009024   _SAAD_CTRL_BITS
-00009026   _alpha1
-00009028   _alpha
-0000902a   _vel
-0000902c   _speed
-0000902e   _SAAD_CTRL_ALL
-00009030   _sysCtrlRegs
-00009032   _gpioS
-00009034   _adcRegs
-00009036   _clkS
-00009038   _adcResRegs
-0000903a   _mcbspData
+00009026   _speed
+00009028   _alpha1
+0000902a   _alpha
+0000902c   _vel
+0000902e   _acel
+00009030   _SAAD_CTRL_ALL
+00009032   _adcRegs
+00009034   _adcResRegs
+00009036   _gpioS
+00009038   _mcbspData
+0000903a   _sysCtrlRegs
 0000903c   _time
 0000903e   _jj
 00009040   _i
-00009042   _j
+00009042   _velCoef
 00009044   _mode1cnt
 00009046   _mode3cnt
-00009048   _acel
-0000904a   _timer1cnt
+00009048   _clkS
+0000904a   _dt
 0000904c   _timeUp
-0000904e   _dt
+0000904e   _j
 00009050   _timer0cnt
-00009052   _spiaRegs
-00009054   _CpuTimer0Regs
-00009056   _tempData2
-00009058   _CpuTimer1Regs
-0000905a   _interrupS
-0000905c   _sciaRegs
-0000905e   _xIntruptRegs
+00009052   _timer1cnt
+00009054   _spiaRegs
+00009056   _CpuTimer1Regs
+00009058   _CpuTimer0Regs
+0000905a   _CpuTimer2Regs
+0000905c   _interrupS
+0000905e   _sciaRegs
 00009060   _spiData
-00009062   _interrupSVectTable
+00009062   _xIntruptRegs
 00009064   _mcbspRegs
 00009066   _flashRegs
 00009068   _START_BIT
-0000906a   _tempData1
-0000906c   _START_BIT_BITS
-0000906e   _CpuTimer2Regs
-00009070   _refD
-00009074   _iTot
-00009078   _refQ
-0000907c   _pwmValues
-00009080   _dqP
-00009088   _alBe
-00009090   _dq
-00009098   _saadFrameSend
-000090a0   _alBeI
-000090a8   _saadFrameResive
-000090b0   _pwmRegS
+0000906a   _START_BIT_BITS
+0000906c   _tempData2
+0000906e   _interrupSVectTable
+00009070   _tempData1
+00009072   _refQ
+00009076   _iTot
+0000907a   _refD
+00009080   _pwmValues
+00009084   _dq
+0000908c   _dqP
+00009094   _saadFrameSend
+0000909c   _saadFrameResive
+000090a4   _alBe
+000090ac   _alBeI
+000090b4   _pwmRegS
 000090c0   _pwmHandle
 000090cc   _abcI
 000090d8   _abc
@@ -701,9 +704,9 @@ address    name
 00009140   _motor1
 00009180   _motor0
 000091c0   _spiModule
-00009200   _pidD
-00009280   _pidQ
-00009300   _pidVel
+00009200   _pidVel
+00009280   _pidD
+00009300   _pidQ
 00009380   _AMCconfArr
 00009400   __unlock
 00009402   __lock
@@ -711,257 +714,257 @@ address    name
 00009406   ___TI_dtors_ptr
 003f4000   .text
 003f4000   ___text__
-003f41dd   _usDelay
-003f41ee   _gpioInit
-003f41f7   _setupGPIOs
-003f4428   _setupGPIOsInterrupt
-003f4437   _flashInit
-003f443d   _flashSetup
-003f4461   _systemInit
-003f4467   _systemSetup
-003f4485   _ServiceDog
-003f4493   _DisableDog
-003f449d   _InitPll
-003f44fc   _setUpPeripheralClocks
-003f459e   _setIntOsc1
-003f45b3   _setIntOsc2
-003f45ce   _setXTALOsc
-003f45e9   _setExtOsc
-003f4607   _adcInit
-003f4610   _ADC_config
-003f478a   _adcRead
-003f47f4   _clkInit
-003f47fd   _setupClks
-003f482e   _setupPeripheralClks
-003f48c2   _delay_loop
-003f48d8   _clkg_delay_loop
-003f48ee   _mcbspaInit
-003f48f4   _mcbspaSetup
-003f493b   _mcbspSetupSpi
-003f4992   _mcbsp_write
-003f49ad   _mcbsp_read
-003f49d1   _mcbspAddr
-003f49d5   _AMCconf
-003f4a76   _spiInit
-003f4a7c   _spiSetupFF
-003f4a8b   _spiDisableFF
-003f4a99   _gyroVerifyL2G2IS
-003f4abf   _spiGyroConfMAX
-003f4aec   _spiGyroConfL2G2IS
-003f4b01   _sciaInit
-003f4b07   _sciaSetup
-003f4b3c   _sciaRead
-003f4b41   _sciaWrite
-003f4b4b   _interrupsInit
-003f4b57   _interrupsCtrlInit
-003f4ba1   _interruptSEnable
-003f4bac   _interrupsCpuSetup
-003f4bcc   _interrupSDefVectTableInit
-003f4bf7   _timerInit
-003f4c03   _timerSConfig
-003f4c15   _ConfigCpuTimer0
-003f4c3b   _ConfigCpuTimer1
-003f4c60   _ConfigCpuTimer2
-003f4c85   _pwmSInit
-003f4c9a   _pwmSetupWTest
-003f4dd6   _setPWMValues
-003f4df8   _disablePWM
-003f4e0d   _setPWMValuesArr
-003f4e2c   _getMaxPWMVal
-003f4e3a   _crc8POS
-003f4e5a   _crc8VEL
-003f4e7a   _crc8DATA
-003f4e9a   _calcPWM
-003f4f0d   _stopMotor
-003f4f14   _pidCalc
-003f4f15   _pid_reg3_calc
-003f4fda   _clarke
-003f500e   _park
-003f5049   _parkInv
-003f5084   _clarkeInv
-003f512e   _makeTest
-003f51c8   _alphaF
-003f52df   _main
-003f5537   _SPI_RX_isr
-003f5591   _lockDevStart
-003f5606   _calcSpeed
-003f5767   _INT13_ISR
-003f5771   _INT14_ISR
-003f577b   _DATALOG_ISR
-003f5785   _RTOSINT_ISR
-003f578f   _EMUINT_ISR
-003f5799   _NMI_ISR
-003f57a3   _ILLEGAL_ISR
-003f57ad   _USER1_ISR
-003f57b7   _USER2_ISR
-003f57c1   _USER3_ISR
-003f57cb   _USER4_ISR
-003f57d5   _USER5_ISR
-003f57df   _USER6_ISR
-003f57e9   _USER7_ISR
-003f57f3   _USER8_ISR
-003f57fd   _USER9_ISR
-003f5807   _USER10_ISR
-003f5811   _USER11_ISR
-003f581b   _USER12_ISR
-003f5825   _ADCINT1_ISR
-003f582f   _ADCINT2_ISR
-003f5839   _XINT1_ISR
-003f5843   _XINT2_ISR
-003f584d   _ADCINT9_ISR
-003f5857   _TINT0_ISR
-003f5861   _WAKEINT_ISR
-003f586b   _EPWM1_TZINT_ISR
-003f5875   _EPWM2_TZINT_ISR
-003f587f   _EPWM3_TZINT_ISR
-003f5889   _EPWM4_TZINT_ISR
-003f5893   _EPWM5_TZINT_ISR
-003f589d   _EPWM6_TZINT_ISR
-003f58a7   _EPWM7_TZINT_ISR
-003f58b1   _EPWM8_TZINT_ISR
-003f58bb   _EPWM1_INT_ISR
-003f58c5   _EPWM2_INT_ISR
-003f58cf   _EPWM3_INT_ISR
-003f58d9   _EPWM4_INT_ISR
-003f58e3   _EPWM5_INT_ISR
-003f58ed   _EPWM6_INT_ISR
-003f58f7   _EPWM7_INT_ISR
-003f5901   _EPWM8_INT_ISR
-003f590b   _ECAP1_INT_ISR
-003f5915   _ECAP2_INT_ISR
-003f591f   _ECAP3_INT_ISR
-003f5929   _HRCAP1_INT_ISR
-003f5933   _HRCAP2_INT_ISR
-003f593d   _EQEP1_INT_ISR
-003f5947   _EQEP2_INT_ISR
-003f5951   _HRCAP3_INT_ISR
-003f595b   _HRCAP4_INT_ISR
-003f5965   _USB0_INT_ISR
-003f596f   _SPIRXINTA_ISR
-003f5979   _SPITXINTA_ISR
-003f5983   _SPIRXINTB_ISR
-003f598d   _SPITXINTB_ISR
-003f5997   _MRINTA_ISR
-003f59a1   _MXINTA_ISR
-003f59ab   _DINTCH1_ISR
-003f59b5   _DINTCH2_ISR
-003f59bf   _DINTCH3_ISR
-003f59c9   _DINTCH4_ISR
-003f59d3   _DINTCH5_ISR
-003f59dd   _DINTCH6_ISR
-003f59e7   _I2CINT1A_ISR
-003f59f1   _I2CINT2A_ISR
-003f59fb   _SCIRXINTA_ISR
-003f5a05   _SCITXINTA_ISR
-003f5a0f   _SCIRXINTB_ISR
-003f5a19   _SCITXINTB_ISR
-003f5a23   _ECAN0INTA_ISR
-003f5a2d   _ECAN1INTA_ISR
-003f5a37   _ADCINT3_ISR
-003f5a41   _ADCINT4_ISR
-003f5a4b   _ADCINT5_ISR
-003f5a55   _ADCINT6_ISR
-003f5a5f   _ADCINT7_ISR
-003f5a69   _ADCINT8_ISR
-003f5a73   _CLA1_INT1_ISR
-003f5a7d   _CLA1_INT2_ISR
-003f5a87   _CLA1_INT3_ISR
-003f5a91   _CLA1_INT4_ISR
-003f5a9b   _CLA1_INT5_ISR
-003f5aa5   _CLA1_INT6_ISR
-003f5aaf   _CLA1_INT7_ISR
-003f5ab9   _CLA1_INT8_ISR
-003f5ac3   _XINT3_ISR
-003f5acd   _LVF_ISR
-003f5ad7   _LUF_ISR
-003f5ae1   _EMPTY_ISR
-003f5aee   _PIE_RESERVED
-003f5af8   _rsvd_ISR
-003f5b02   _cpu_timer0_isr
-003f5f44   _cpu_timer2_isr
-003f5fd8   _cpu_timer1_isr
-003f6574   _SCI_RX_isr
-003f6588   _GYRO_X_isr
-003f659c   _adc_X_ISR
-003f65b5   _CLK_disableAdcClock
-003f65c2   _CLK_disableClaClock
-003f65cf   _CLK_disableClkIn
-003f65db   _CLK_disableCompClock
-003f65e7   _CLK_disableCpuTimerClock
-003f65f6   _CLK_disableCrystalOsc
-003f6602   _CLK_disableEcanaClock
-003f660f   _CLK_disableEcap1Clock
-003f661c   _CLK_disableEqep1Clock
-003f6629   _CLK_disableGpioInputClock
-003f6636   _CLK_disableHrPwmClock
-003f6643   _CLK_disableI2cClock
-003f6650   _CLK_disableLinAClock
-003f665d   _CLK_disableOsc1
-003f6669   _CLK_disableOsc1HaltMode
-003f6675   _CLK_disableOsc2
-003f6681   _CLK_disableOsc2HaltMode
-003f668d   _CLK_disablePwmClock
-003f669e   _CLK_disableSciaClock
-003f66ab   _CLK_disableSpiaClock
-003f66b8   _CLK_disableSpibClock
-003f66c2   _CLK_disableTbClockSync
-003f66cf   _CLK_disableWatchDogHaltMode
-003f66db   _CLK_enableAdcClock
-003f66e8   _CLK_enableClaClock
-003f66f5   _CLK_enableCompClock
-003f6703   _CLK_enableCpuTimerClock
-003f6711   _CLK_enableCrystalOsc
-003f671d   _CLK_enableEcanaClock
-003f672a   _CLK_enableEqep1Clock
-003f6737   _CLK_enableEcap1Clock
-003f6744   _CLK_enableClkIn
-003f6750   _CLK_enableGpioInputClock
-003f675d   _CLK_enableHrPwmClock
-003f676a   _CLK_enableI2cClock
-003f6777   _CLK_enableLinAClock
-003f6784   _CLK_enableOsc1
-003f6790   _CLK_enableOsc1HaltMode
-003f679c   _CLK_enableOsc2
-003f67a8   _CLK_enableOsc2HaltMode
-003f67b4   _CLK_enablePwmClock
-003f67c4   _CLK_enableSciaClock
-003f67d1   _CLK_enableSpiaClock
-003f67de   _CLK_enableSpibClock
-003f67eb   _CLK_enableTbClockSync
-003f67f8   _CLK_enableWatchDogHaltMode
-003f6804   _CLK_init
-003f6811   _CLK_setClkOutPreScaler
-003f6821   _CLK_setLowSpdPreScaler
-003f682f   _CLK_setOscSrc
-003f683f   _CLK_setOsc2Src
-003f684f   _CLK_setTimer2PreScale
-003f685f   _CLK_setTimer2Src
-003f686f   _CLK_setWatchDogSrc
-003f687f   _GPIO_init
-003f688c   _GPIO_setPullup
-003f68c8   _GPIO_setDirection
-003f6904   _GPIO_setExtInt
-003f6917   _GPIO_read
-003f6944   _GPIO_setHigh
-003f6962   _GPIO_setLow
-003f6980   _GPIO_setMode
-003f69eb   _GPIO_toggle
-003f6a09   FS$$DIV
-003f6a91   _cos
-003f6af2   _sin
-003f6b4a   _c_int00
-003f6b90   __args_main
-003f6ba9   C$$EXIT
-003f6ba9   _abort
-003f6bab   _exit
-003f6bc2   __register_unlock
-003f6bc6   __register_lock
-003f6bca   __nop
-003f6bd3   ___etext__
-003f6bd3   etext
-003f6cd4   _PieVectTableInit
-003f6dd4   ___cinit__
-003f6dd4   cinit
+003f41d7   _usDelay
+003f41e8   _gpioInit
+003f41f1   _setupGPIOs
+003f4422   _setupGPIOsInterrupt
+003f4431   _flashInit
+003f4437   _flashSetup
+003f445b   _systemInit
+003f4461   _systemSetup
+003f447f   _ServiceDog
+003f448d   _DisableDog
+003f4497   _InitPll
+003f44f6   _setUpPeripheralClocks
+003f4598   _setIntOsc1
+003f45ad   _setIntOsc2
+003f45c8   _setXTALOsc
+003f45e3   _setExtOsc
+003f4601   _adcInit
+003f460a   _ADC_config
+003f4786   _adcRead
+003f4802   _clkInit
+003f480b   _setupClks
+003f483c   _setupPeripheralClks
+003f48d0   _delay_loop
+003f48e8   _clkg_delay_loop
+003f4900   _mcbspaInit
+003f4906   _mcbspaSetup
+003f494d   _mcbspSetupSpi
+003f49a4   _mcbsp_write
+003f49c1   _mcbsp_read
+003f49e5   _mcbspAddr
+003f49e9   _AMCconf
+003f4a92   _spiInit
+003f4a98   _spiSetupFF
+003f4aa7   _spiDisableFF
+003f4ab5   _gyroVerifyL2G2IS
+003f4adb   _spiGyroConfMAX
+003f4b08   _spiGyroConfL2G2IS
+003f4b1d   _sciaInit
+003f4b23   _sciaSetup
+003f4b58   _sciaRead
+003f4b5d   _sciaWrite
+003f4b67   _interrupsInit
+003f4b73   _interrupsCtrlInit
+003f4bbd   _interruptSEnable
+003f4bc8   _interrupsCpuSetup
+003f4be8   _interrupSDefVectTableInit
+003f4c15   _timerInit
+003f4c21   _timerSConfig
+003f4c33   _ConfigCpuTimer0
+003f4c59   _ConfigCpuTimer1
+003f4c7e   _ConfigCpuTimer2
+003f4ca3   _pwmSInit
+003f4cb8   _pwmSetupWTest
+003f4df4   _setPWMValues
+003f4e16   _disablePWM
+003f4e2b   _setPWMValuesArr
+003f4e4c   _getMaxPWMVal
+003f4e5a   _crc8POS
+003f4e7a   _crc8VEL
+003f4e9a   _crc8DATA
+003f4eba   _calcPWM
+003f4f2d   _stopMotor
+003f4f34   _pidCalc
+003f4f35   _pid_reg3_calc
+003f5001   _clarke
+003f5035   _park
+003f5070   _parkInv
+003f50ab   _clarkeInv
+003f515a   _makeTest
+003f51fe   _alphaF
+003f5315   _main
+003f5577   _SPI_RX_isr
+003f55d1   _lockDevStart
+003f565a   _calcSpeed
+003f5695   _INT13_ISR
+003f56a0   _INT14_ISR
+003f56ab   _DATALOG_ISR
+003f56b6   _RTOSINT_ISR
+003f56c1   _EMUINT_ISR
+003f56cc   _NMI_ISR
+003f56d7   _ILLEGAL_ISR
+003f56e2   _USER1_ISR
+003f56ed   _USER2_ISR
+003f56f8   _USER3_ISR
+003f5703   _USER4_ISR
+003f570e   _USER5_ISR
+003f5719   _USER6_ISR
+003f5724   _USER7_ISR
+003f572f   _USER8_ISR
+003f573a   _USER9_ISR
+003f5745   _USER10_ISR
+003f5750   _USER11_ISR
+003f575b   _USER12_ISR
+003f5766   _ADCINT1_ISR
+003f5771   _ADCINT2_ISR
+003f577c   _XINT1_ISR
+003f5787   _XINT2_ISR
+003f5792   _ADCINT9_ISR
+003f579d   _TINT0_ISR
+003f57a8   _WAKEINT_ISR
+003f57b3   _EPWM1_TZINT_ISR
+003f57be   _EPWM2_TZINT_ISR
+003f57c9   _EPWM3_TZINT_ISR
+003f57d4   _EPWM4_TZINT_ISR
+003f57df   _EPWM5_TZINT_ISR
+003f57ea   _EPWM6_TZINT_ISR
+003f57f5   _EPWM7_TZINT_ISR
+003f5800   _EPWM8_TZINT_ISR
+003f580b   _EPWM1_INT_ISR
+003f5816   _EPWM2_INT_ISR
+003f5821   _EPWM3_INT_ISR
+003f582c   _EPWM4_INT_ISR
+003f5837   _EPWM5_INT_ISR
+003f5842   _EPWM6_INT_ISR
+003f584d   _EPWM7_INT_ISR
+003f5858   _EPWM8_INT_ISR
+003f5863   _ECAP1_INT_ISR
+003f586e   _ECAP2_INT_ISR
+003f5879   _ECAP3_INT_ISR
+003f5884   _HRCAP1_INT_ISR
+003f588f   _HRCAP2_INT_ISR
+003f589a   _EQEP1_INT_ISR
+003f58a5   _EQEP2_INT_ISR
+003f58b0   _HRCAP3_INT_ISR
+003f58bb   _HRCAP4_INT_ISR
+003f58c6   _USB0_INT_ISR
+003f58d1   _SPIRXINTA_ISR
+003f58dc   _SPITXINTA_ISR
+003f58e7   _SPIRXINTB_ISR
+003f58f2   _SPITXINTB_ISR
+003f58fd   _MRINTA_ISR
+003f5908   _MXINTA_ISR
+003f5913   _DINTCH1_ISR
+003f591e   _DINTCH2_ISR
+003f5929   _DINTCH3_ISR
+003f5934   _DINTCH4_ISR
+003f593f   _DINTCH5_ISR
+003f594a   _DINTCH6_ISR
+003f5955   _I2CINT1A_ISR
+003f5960   _I2CINT2A_ISR
+003f596b   _SCIRXINTA_ISR
+003f5976   _SCITXINTA_ISR
+003f5981   _SCIRXINTB_ISR
+003f598c   _SCITXINTB_ISR
+003f5997   _ECAN0INTA_ISR
+003f59a2   _ECAN1INTA_ISR
+003f59ad   _ADCINT3_ISR
+003f59b8   _ADCINT4_ISR
+003f59c3   _ADCINT5_ISR
+003f59ce   _ADCINT6_ISR
+003f59d9   _ADCINT7_ISR
+003f59e4   _ADCINT8_ISR
+003f59ef   _CLA1_INT1_ISR
+003f59fa   _CLA1_INT2_ISR
+003f5a05   _CLA1_INT3_ISR
+003f5a10   _CLA1_INT4_ISR
+003f5a1b   _CLA1_INT5_ISR
+003f5a26   _CLA1_INT6_ISR
+003f5a31   _CLA1_INT7_ISR
+003f5a3c   _CLA1_INT8_ISR
+003f5a47   _XINT3_ISR
+003f5a52   _LVF_ISR
+003f5a5d   _LUF_ISR
+003f5a68   _EMPTY_ISR
+003f5a75   _PIE_RESERVED
+003f5a80   _rsvd_ISR
+003f5a8b   _cpu_timer0_isr
+003f5eef   _cpu_timer2_isr
+003f5f83   _cpu_timer1_isr
+003f654f   _SCI_RX_isr
+003f6563   _GYRO_X_isr
+003f6577   _adc_X_ISR
+003f6590   _CLK_disableAdcClock
+003f659d   _CLK_disableClaClock
+003f65aa   _CLK_disableClkIn
+003f65b6   _CLK_disableCompClock
+003f65c2   _CLK_disableCpuTimerClock
+003f65d1   _CLK_disableCrystalOsc
+003f65dd   _CLK_disableEcanaClock
+003f65ea   _CLK_disableEcap1Clock
+003f65f7   _CLK_disableEqep1Clock
+003f6604   _CLK_disableGpioInputClock
+003f6611   _CLK_disableHrPwmClock
+003f661e   _CLK_disableI2cClock
+003f662b   _CLK_disableLinAClock
+003f6638   _CLK_disableOsc1
+003f6644   _CLK_disableOsc1HaltMode
+003f6650   _CLK_disableOsc2
+003f665c   _CLK_disableOsc2HaltMode
+003f6668   _CLK_disablePwmClock
+003f6679   _CLK_disableSciaClock
+003f6686   _CLK_disableSpiaClock
+003f6693   _CLK_disableSpibClock
+003f669d   _CLK_disableTbClockSync
+003f66aa   _CLK_disableWatchDogHaltMode
+003f66b6   _CLK_enableAdcClock
+003f66c3   _CLK_enableClaClock
+003f66d0   _CLK_enableCompClock
+003f66de   _CLK_enableCpuTimerClock
+003f66ec   _CLK_enableCrystalOsc
+003f66f8   _CLK_enableEcanaClock
+003f6705   _CLK_enableEqep1Clock
+003f6712   _CLK_enableEcap1Clock
+003f671f   _CLK_enableClkIn
+003f672b   _CLK_enableGpioInputClock
+003f6738   _CLK_enableHrPwmClock
+003f6745   _CLK_enableI2cClock
+003f6752   _CLK_enableLinAClock
+003f675f   _CLK_enableOsc1
+003f676b   _CLK_enableOsc1HaltMode
+003f6777   _CLK_enableOsc2
+003f6783   _CLK_enableOsc2HaltMode
+003f678f   _CLK_enablePwmClock
+003f679f   _CLK_enableSciaClock
+003f67ac   _CLK_enableSpiaClock
+003f67b9   _CLK_enableSpibClock
+003f67c6   _CLK_enableTbClockSync
+003f67d3   _CLK_enableWatchDogHaltMode
+003f67df   _CLK_init
+003f67ee   _CLK_setClkOutPreScaler
+003f67fe   _CLK_setLowSpdPreScaler
+003f680c   _CLK_setOscSrc
+003f681c   _CLK_setOsc2Src
+003f682c   _CLK_setTimer2PreScale
+003f683c   _CLK_setTimer2Src
+003f684c   _CLK_setWatchDogSrc
+003f685c   _GPIO_init
+003f686b   _GPIO_setPullup
+003f68a9   _GPIO_setDirection
+003f68e7   _GPIO_setExtInt
+003f68fa   _GPIO_read
+003f692a   _GPIO_setHigh
+003f694a   _GPIO_setLow
+003f696a   _GPIO_setMode
+003f69db   _GPIO_toggle
+003f69fb   FS$$DIV
+003f6a83   _cos
+003f6ae4   _sin
+003f6b3c   _c_int00
+003f6b82   __args_main
+003f6b9b   C$$EXIT
+003f6b9b   _abort
+003f6b9d   _exit
+003f6bb4   __register_unlock
+003f6bb8   __register_lock
+003f6bbc   __nop
+003f6bc5   ___etext__
+003f6bc5   etext
+003f6cc6   _PieVectTableInit
+003f6dc6   ___cinit__
+003f6dc6   cinit
 003f7ff6   code_start
 ffffffff   ___binit__
 ffffffff   ___c_args__
@@ -969,4 +972,4 @@ ffffffff   ___pinit__
 ffffffff   binit
 ffffffff   pinit
 
-[367 symbols]
+[368 symbols]

@@ -262,7 +262,7 @@ void spiGyroConfMAX()
 void spiGyroConfL2G2IS()
 {
 	spiWrite(0x0B, 0x03); //power on comand
-	spiWrite(0x0C, 0x80); //config LPF-O for 1 and disable high-pass filter
+	spiWrite(0x0C, 0x00); //config LPF-O for 1 and disable high-pass filter
 	spiWrite(0x0D, 0x01); //disable data RDY signal and enable high-pass filter
 	spiWrite(0x10, 0x00); //orientation config
 	spiWrite(0x1F, 0x08); //set scale 200 dgps

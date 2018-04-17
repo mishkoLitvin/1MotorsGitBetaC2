@@ -26,21 +26,18 @@ long i;
 float alphaF(float a)
 {
     return
-//    		+6.82342+42.82826*a;
-    		-0.748360
-    		+47.21638*a
-    		+14.57962*a*a
-    		-86.44495*a*a*a
-    		-430.7135*a*a*a*a
-    		+1036.899*a*a*a*a*a
-    		+1467.054*a*a*a*a*a*a
-    		-3112.472*a*a*a*a*a*a*a;
-
-
+    		-0.64825
+    		+45.1323*a
+    		+0.63245*a*a
+    		-86.49711*a*a*a
+    		-17.95706*a*a*a*a
+    		+848.9752*a*a*a*a*a
+    		+20.22682*a*a*a*a*a*a
+    		-2078.20943*a*a*a*a*a*a*a;
 }
 //#endif
 
-void main(void) {
+    void main(void) {
 
     systemInit();
     systemSetup();
@@ -295,7 +292,7 @@ __interrupt void cpu_timer0_isr(void)
         dqP[0].data[0] = pidD[0].Out;
 
         pidVel[0].Ref = motor0.velocity;
-        pidVel[0].Fdb = ((float)saadFrameSend.VELOCITY.all)*0.01;
+        pidVel[0].Fdb = ((float)saadFrameSend.VELOCITY.all)*0.01-motor0.velCorrection;
         pid_reg3_calc(&pidVel[0]);
         if(mode != NoNameMode)
             refQ[0] = pidVel[0].Out;
@@ -317,7 +314,7 @@ __interrupt void cpu_timer0_isr(void)
         dqP[1].data[0] = pidD[1].Out;
 
         pidVel[1].Ref = motor0.velocity;
-        pidVel[1].Fdb = ((float)saadFrameSend.VELOCITY.all)*0.01;
+        pidVel[1].Fdb = ((float)saadFrameSend.VELOCITY.all)*0.01-motor0.velCorrection;
         pid_reg3_calc(&pidVel[1]);
         if(mode != NoNameMode)
             refQ[1] = pidVel[1].Out;
@@ -465,6 +462,11 @@ __interrupt void cpu_timer1_isr(void)
         saadFrameSend.COMMAND_BYTE.bit.COMMAND_H = saadFrameResive.COMMAND_BYTE.bit.COMMAND_H+1;
 
 //        if(saadFrameResive.CTRLSUM.bit.CTRLSUM_H==crc8DATA(saadFrameResive))
+        if(saadFrameResive.COMMAND_BYTE.bit.COMMAND_H==0x52)
+        {
+            motor0.velCorrection = (((float)saadFrameResive.DATA.all)*0.01);
+        }
+        else
             if(saadFrameResive.COMMAND_BYTE.bit.COMMAND_H==0x50)
             {
                 mode = GoPositionMode;
@@ -704,6 +706,7 @@ __interrupt void cpu_timer1_isr(void)
                 }
                 else
                     if(((saadFrameResive.COMMAND_BYTE.bit.COMMAND_H==0x50)|
+                            (saadFrameResive.COMMAND_BYTE.bit.COMMAND_H==0x52)|
                             (saadFrameResive.COMMAND_BYTE.bit.COMMAND_H==0xA0))
                             &(sendDubSCI == 0))
                     {
@@ -828,7 +831,7 @@ void SPI_RX_isr(void)
 	xData = (int)spiData->xData;
 	spiData->yData = (spiData->yH<<8)|spiData->yL;
 	yData = (int)spiData->yData;
-	saadFrameSend.VELOCITY.all = (spiData->yData+183)/(1.31);
+	saadFrameSend.VELOCITY.all = (spiData->xData+183)/(1.31);
 
     spiaRegs->SPIFFRX.bit.RXFFINTCLR = 1;
     interrupS->PIEACK.all = PIEACK_GROUP6;
@@ -893,73 +896,79 @@ void lockDevStart()
 
 void calcSpeed()
 {
-    if((motor0.velocity < vel)&(moveMode == MoveUpAcel))
-    {
-        motor0.aceleration = +acel;
-        motor0.velocity = motor0.velocity + motor0.aceleration*dt;
-    }
-    else
-    {
-        if(moveMode == MoveUpAcel)
-            moveMode = MoveUpStable;
-        if(moveMode == MoveUpStable)
-        {
-            motor0.velocity = vel;
-            motor0.aceleration = -acel;
-        }
-    }
-    if((alpha>=(motor0.position-motor0.velocity*motor0.velocity*0.5/acel))&(motor0.velocity>0))
-    {
-        if((moveMode == MoveUpStable)|(moveMode == MoveUpAcel))
-            moveMode = MoveUpDecel;
-        if(moveMode == MoveUpDecel)
-        {
-            motor0.aceleration = -acel;
-            motor0.velocity = motor0.velocity + motor0.aceleration*dt;
-        }
-    }
-    if((motor0.velocity<=0))//|(alpha>=motor0.position))
-    {
-        if((moveMode == MoveUpDecel))
-            moveMode = MoveUpZero;
-        if(moveMode == MoveUpZero)
-        {
-            motor0.velocity = 0;
-        }
-    }
+	motor0.velocity = (motor0.position-alpha)/velCoef;
+	if(motor0.velocity>vel)
+		motor0.velocity = vel;
+	if(motor0.velocity<-vel)
+		motor0.velocity = -vel;
 
-    if((motor0.velocity > -vel)&(moveMode == MoveDownAcel))
-    {
-        motor0.aceleration = -acel;
-        motor0.velocity = motor0.velocity + motor0.aceleration*dt;
-    }
-    else
-    {
-        if(moveMode == MoveDownAcel)
-            moveMode = MoveDownStable;
-        if(moveMode == MoveDownStable)
-        {
-            motor0.velocity = -vel;
-            motor0.aceleration = +acel;
-        }
-    }
-    if((alpha<=(motor0.position+motor0.velocity*motor0.velocity*0.5/acel))&(motor0.velocity<0))
-    {
-        if((moveMode == MoveDownStable)|(moveMode == MoveDownAcel))
-            moveMode = MoveDownDecel;
-        if(moveMode == MoveDownDecel)
-        {
-            motor0.aceleration = +acel;
-            motor0.velocity = motor0.velocity + motor0.aceleration*dt;
-        }
-    }
-    if((motor0.velocity>=0))//|(alpha<=motor0.position))
-    {
-        if(moveMode == MoveDownDecel)
-            moveMode = MoveDownZero;
-        if(moveMode == MoveDownZero)
-        {
-            motor0.velocity = 0;
-        }
-    }
+//	if((motor0.velocity < vel)&(moveMode == MoveUpAcel))
+//	{
+//		motor0.aceleration = +acel;
+//		motor0.velocity = motor0.velocity + motor0.aceleration*dt;
+//	}
+//	else
+//	{
+//		if(moveMode == MoveUpAcel)
+//			moveMode = MoveUpStable;
+//		if(moveMode == MoveUpStable)
+//		{
+//			motor0.velocity = vel;
+//			motor0.aceleration = -acel;
+//		}
+//	}
+//	if((alpha>=(motor0.position-motor0.velocity*motor0.velocity*0.5/acel))&(motor0.velocity>0))
+//	{
+//		if((moveMode == MoveUpStable)|(moveMode == MoveUpAcel))
+//			moveMode = MoveUpDecel;
+//		if(moveMode == MoveUpDecel)
+//		{
+//			motor0.aceleration = -acel;
+//			motor0.velocity = motor0.velocity + motor0.aceleration*dt;
+//		}
+//	}
+//	if((motor0.velocity<=0))//|(alpha>=motor0.position))
+//		{
+//		if((moveMode == MoveUpDecel))
+//			moveMode = MoveUpZero;
+//		if(moveMode == MoveUpZero)
+//		{
+//			motor0.velocity = 0;
+//		}
+//		}
+//
+//	if((motor0.velocity > -vel)&(moveMode == MoveDownAcel))
+//	{
+//		motor0.aceleration = -acel;
+//		motor0.velocity = motor0.velocity + motor0.aceleration*dt;
+//	}
+//	else
+//	{
+//		if(moveMode == MoveDownAcel)
+//			moveMode = MoveDownStable;
+//		if(moveMode == MoveDownStable)
+//		{
+//			motor0.velocity = -vel;
+//			motor0.aceleration = +acel;
+//		}
+//	}
+//	if((alpha<=(motor0.position+motor0.velocity*motor0.velocity*0.5/acel))&(motor0.velocity<0))
+//	{
+//		if((moveMode == MoveDownStable)|(moveMode == MoveDownAcel))
+//			moveMode = MoveDownDecel;
+//		if(moveMode == MoveDownDecel)
+//		{
+//			motor0.aceleration = +acel;
+//			motor0.velocity = motor0.velocity + motor0.aceleration*dt;
+//		}
+//	}
+//	if((motor0.velocity>=0))//|(alpha<=motor0.position))
+//		{
+//		if(moveMode == MoveDownDecel)
+//			moveMode = MoveDownZero;
+//		if(moveMode == MoveDownZero)
+//		{
+//			motor0.velocity = 0;
+//		}
+//		}
 }

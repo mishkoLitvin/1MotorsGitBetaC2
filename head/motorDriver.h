@@ -1,7 +1,7 @@
 /*
  * motorDriver.h
  *
- *  Created on: 12 квіт. 2016
+ *  Created on: 12 пїЅпїЅпїЅ. 2016
  *      Author: Mishko
  *
  *     This file contains variables for motor management,
@@ -22,6 +22,7 @@ typedef struct MotorData_
 	unsigned int pwmData;
 	int direction;
 	float velocity;
+	float velCorrection;
 	float aceleration;
 	float polesCount;
 	float leftPos, rightPos;

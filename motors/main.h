@@ -123,11 +123,14 @@ PIDREG3 pidQ[2] = {PIDREG3_DEFAULTS, PIDREG3_DEFAULTS};
 float refD[2] = {0.0, 0.0}, refQ[2] = {0.0, 0.0};
 
 unsigned int lockDevStepCount = 250;
+float velCoef = 0.08;
+
 
 void zeroStart()
 {
-    motor0.phaseZero = 19;//6.;
-    motor1.phaseZero = 27.5;//3.1;
+    motor0.phaseZero = 34;//6.;
+    motor1.phaseZero = 19;//3.1;
+
 
     motor0.index = 0;
     motor0.pwmValues.index = 0;
@@ -144,13 +147,13 @@ void zeroStart()
     motor1.velocity = 0;
 
 
-    motor0.polesCount = 10.;
+    motor0.polesCount = 16.;
     motor1.polesCount = 16.;
 
-    motor0.leftPos = 17.;
-    motor0.rightPos = -17.;
-    motor0.leftPosScan = 17.;
-    motor0.rightPosScan = -17.;
+    motor0.leftPos = 18.;
+    motor0.rightPos = -18.;
+    motor0.leftPosScan = 18.;
+    motor0.rightPosScan = -18.;
 
     pidD[0].Kp = 1.;
     pidD[0].Kd = 0.;
@@ -162,11 +165,11 @@ void zeroStart()
 
     pidQ[0].Kp = 1.;
     pidQ[0].Kd = 0.;
-    pidQ[0].Ki = 0.01;
+    pidQ[0].Ki = 0;//0.01;
 
     pidQ[1].Kp = 1.;
     pidQ[1].Kd = 0.;
-    pidQ[1].Ki = 0.01;
+    pidQ[1].Ki = 0;//0.01;
 
     pidVel[0].Kp = 0.01;
     pidVel[0].Kd = 0.02;
@@ -199,6 +202,7 @@ void zeroStart()
     vel = 60.;
     motor0.scanVel = 60.;
     motor0.aceleration = 200.;
+    motor0.velCorrection = 0;
     acel = 200.; //(deg / sec) / sec
     time = 0;
     timeUp = vel/acel;
