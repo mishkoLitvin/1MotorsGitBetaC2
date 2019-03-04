@@ -1,7 +1,7 @@
 /*
  * pwmDriver.h
  *
- *  Created on: 16 вер. 2016
+ *  Created on: 16 пїЅпїЅпїЅ. 2016
  *      Author: Mishko Lytvyn
  */
 
@@ -80,9 +80,10 @@ void pwmSetupWTest()
 	pwmRegS[0]->ETSEL.bit.SOCAEN = 1;
 	pwmRegS[0]->ETSEL.bit.SOCASEL = 1;
 	pwmRegS[0]->ETPS.bit.SOCAPRD = 3;
+	int tbclk = 3500;//1900;
 
 	// EPWM Module 1 config
-	pwmRegS[0]->TBPRD = 900; // Period = 1200 TBCLK counts
+	pwmRegS[0]->TBPRD = tbclk; // Period = 1200 TBCLK counts
 	pwmRegS[0]->TBPHS.half.TBPHS = 0; // Set Phase register to zero
 	pwmRegS[0]->TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN; // Symmetrical mode
 	pwmRegS[0]->TBCTL.bit.PHSEN = TB_DISABLE; // Master module
@@ -98,7 +99,7 @@ void pwmSetupWTest()
 	//	pwmRegS[0]->AQCTLB.bit.CBD = AQ_SET;
 
 	// EPWM Module 2 config
-	pwmRegS[1]->TBPRD = 900; // Period = 1200 TBCLK counts
+	pwmRegS[1]->TBPRD = tbclk; // Period = 1200 TBCLK counts
 	pwmRegS[1]->TBPHS.half.TBPHS = 0; // Set Phase register to zero
 	pwmRegS[1]->TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN; // Symmetrical mode
 	pwmRegS[1]->TBCTL.bit.PHSEN = TB_ENABLE; // Slave module
@@ -114,7 +115,7 @@ void pwmSetupWTest()
 	//	pwmRegS[1]->AQCTLB.bit.CBD = AQ_SET;
 
 	// EPWM Module 3 config
-	pwmRegS[2]->TBPRD = 900; // Period = 1200 TBCLK counts
+	pwmRegS[2]->TBPRD = tbclk; // Period = 1200 TBCLK counts
 	pwmRegS[2]->TBPHS.half.TBPHS = 0; // Set Phase register to zero
 	pwmRegS[2]->TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN; // Symmetrical mode
 	pwmRegS[2]->TBCTL.bit.PHSEN = TB_ENABLE; // Slave module
@@ -130,7 +131,7 @@ void pwmSetupWTest()
 	//	pwmRegS[2]->AQCTLB.bit.CBD = AQ_SET;
 
 	// EPWM Module 1 config
-	pwmRegS[3]->TBPRD = 900; // Period = 1200 TBCLK counts
+	pwmRegS[3]->TBPRD = tbclk; // Period = 1200 TBCLK counts
 	pwmRegS[3]->TBPHS.half.TBPHS = 0; // Set Phase register to zero
 	pwmRegS[3]->TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN; // Symmetrical mode
 	pwmRegS[3]->TBCTL.bit.PHSEN = TB_ENABLE; // Master module
@@ -146,7 +147,7 @@ void pwmSetupWTest()
 	//	pwmRegS[0]->AQCTLB.bit.CBD = AQ_SET;
 
 	// EPWM Module 2 config
-	pwmRegS[4]->TBPRD = 900; // Period = 1200 TBCLK counts
+	pwmRegS[4]->TBPRD = tbclk; // Period = 1200 TBCLK counts
 	pwmRegS[4]->TBPHS.half.TBPHS = 0; // Set Phase register to zero
 	pwmRegS[4]->TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN; // Symmetrical mode
 	pwmRegS[4]->TBCTL.bit.PHSEN = TB_ENABLE; // Slave module
@@ -162,7 +163,7 @@ void pwmSetupWTest()
 	//	pwmRegS[1]->AQCTLB.bit.CBD = AQ_SET;
 
 	// EPWM Module 3 config
-	pwmRegS[5]->TBPRD = 900; // Period = 1200 TBCLK counts
+	pwmRegS[5]->TBPRD = tbclk; // Period = 1200 TBCLK counts
 	pwmRegS[5]->TBPHS.half.TBPHS = 0; // Set Phase register to zero
 	pwmRegS[5]->TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN; // Symmetrical mode
 	pwmRegS[5]->TBCTL.bit.PHSEN = TB_ENABLE; // Slave module

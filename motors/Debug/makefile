@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-CG_TOOL_ROOT := /opt/ti/ccsv7/tools/compiler/ti-cgt-c2000_6.2.7
+CG_TOOL_ROOT := /home/mishko/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -139,16 +139,17 @@ all: motorsBetaC2.out secondary-outputs
 
 # Tool invocations
 motorsBetaC2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@echo 'Building target: $@'
+	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-	"/opt/ti/ccsv7/tools/compiler/ti-cgt-c2000_6.2.7/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --opt_for_speed=4 -g --define=FLASH --diag_warning=225 --display_error_number --diag_wrap=off -z -m"motorsBetaC2.map" --stack_size=0x300 --warn_sections -i"/opt/ti/ccsv7/tools/compiler/ti-cgt-c2000_6.2.7/lib" -i"/opt/ti/ccsv7/tools/compiler/ti-cgt-c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="motorsBetaC2_linkInfo.xml" --rom_model -o "motorsBetaC2.out" $(ORDERED_OBJS)
-	@echo 'Finished building target: $@'
+	"/home/mishko/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --vcu_support=vcu0 --opt_for_speed=4 -g --define=FLASH --diag_warning=225 --display_error_number --diag_wrap=off -z -m"motorsBetaC2.map" --stack_size=0x300 --warn_sections -i"/home/mishko/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/lib" -i"/home/mishko/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="motorsBetaC2_linkInfo.xml" --rom_model -o "motorsBetaC2.out" $(ORDERED_OBJS)
+	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 motorsBetaC2.hex: $(EXE_OUTPUTS)
+	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: C2000 Hex Utility'
-	"/opt/ti/ccsv7/tools/compiler/ti-cgt-c2000_6.2.7/bin/hex2000" --memwidth=8 --romwidth=8 --binary --load_image -o "motorsBetaC2.hex" $(EXE_OUTPUTS__QUOTED)
-	@echo 'Finished building: $@'
+	"/home/mishko/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/bin/hex2000" --memwidth=8 --romwidth=8 --binary --load_image -o "motorsBetaC2.hex" $(EXE_OUTPUTS__QUOTED)
+	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets

@@ -1,7 +1,7 @@
 /*
  * pwmDriver.h
  *
- *  Created on: 12 вер. 2016
+ *  Created on: 12 пїЅпїЅпїЅ. 2016
  *      Author: Mishko Lytvyn
  */
 #include "gpio.h"
@@ -126,16 +126,16 @@ void setupGPIOs()
 
 	  // Lock Device
 	  GPIO_setMode(gpioS,LD_STEP,GPIO_43_Mode_GeneralPurpose);
-	  GPIO_setHigh(gpioS,LD_STEP);
+	  GPIO_setLow(gpioS,LD_STEP);
 	  GPIO_setDirection(gpioS,LD_STEP,GPIO_Direction_Output);
 	  GPIO_setMode(gpioS,LD_DIR,GPIO_44_Mode_GeneralPurpose);
-	  GPIO_setHigh(gpioS,LD_DIR);
+	  GPIO_setLow(gpioS,LD_DIR);
 	  GPIO_setDirection(gpioS,LD_DIR,GPIO_Direction_Output);
 	  GPIO_setMode(gpioS,LD_SLEEP,GPIO_50_Mode_GeneralPurpose);
-	  GPIO_setHigh(gpioS,LD_SLEEP);
+	  GPIO_setLow(gpioS,LD_SLEEP);
 	  GPIO_setDirection(gpioS,LD_SLEEP,GPIO_Direction_Output);
 	  GPIO_setMode(gpioS,LD_FAULT,GPIO_51_Mode_GeneralPurpose);
-	  GPIO_setHigh(gpioS,LD_FAULT);
+	  GPIO_setLow(gpioS,LD_FAULT);
 	  GPIO_setDirection(gpioS,LD_FAULT,GPIO_Direction_Input);
 
 	  //PS_A0

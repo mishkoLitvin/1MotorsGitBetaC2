@@ -123,37 +123,39 @@ PIDREG3 pidQ[2] = {PIDREG3_DEFAULTS, PIDREG3_DEFAULTS};
 float refD[2] = {0.0, 0.0}, refQ[2] = {0.0, 0.0};
 
 unsigned int lockDevStepCount = 250;
-float velCoef = 0.08;
+float velCoef = 0.04;
 
 
 void zeroStart()
 {
-    motor0.phaseZero = 34;//6.;
-    motor1.phaseZero = 19;//3.1;
+    motor0.phaseZero = 11.
+            ;//6.;
+    motor1.phaseZero = 22.;//3.1;
 
 
     motor0.index = 0;
     motor0.pwmValues.index = 0;
     motor0.direction = 1;
     motor0.phaseTime = motor0.phaseZero;
-    motor0.pwmData = getMaxPWMVal(0)*0.8;
+    motor0.pwmData = getMaxPWMVal(0);
     motor0.velocity = 0;
+    motor0.velCorrection = 0.3;
 
     motor1.index = 1;
     motor1.pwmValues.index = 1;
     motor1.direction = 1;
     motor1.phaseTime = motor1.phaseZero;
-    motor1.pwmData = getMaxPWMVal(0)*0.8;
+    motor1.pwmData = getMaxPWMVal(0);
     motor1.velocity = 0;
 
 
     motor0.polesCount = 16.;
     motor1.polesCount = 16.;
 
-    motor0.leftPos = 18.;
-    motor0.rightPos = -18.;
-    motor0.leftPosScan = 18.;
-    motor0.rightPosScan = -18.;
+    motor0.leftPos = 21.;
+    motor0.rightPos = -21.;
+    motor0.leftPosScan = 21.;
+    motor0.rightPosScan = -21.;
 
     pidD[0].Kp = 1.;
     pidD[0].Kd = 0.;
@@ -165,11 +167,11 @@ void zeroStart()
 
     pidQ[0].Kp = 1.;
     pidQ[0].Kd = 0.;
-    pidQ[0].Ki = 0;//0.01;
+    pidQ[0].Ki = 0.001;//0.01;
 
     pidQ[1].Kp = 1.;
     pidQ[1].Kd = 0.;
-    pidQ[1].Ki = 0;//0.01;
+    pidQ[1].Ki = 0.00;//0.01;
 
     pidVel[0].Kp = 0.01;
     pidVel[0].Kd = 0.02;

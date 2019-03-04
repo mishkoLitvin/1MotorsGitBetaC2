@@ -22,18 +22,22 @@
 long j, jj;
 long i;
 
+#define angArrAvr 10
+short angArr[angArrAvr];
+short angArrCnt;
+
 //#ifdef BETA
 float alphaF(float a)
 {
     return
-    		-0.64825
-    		+45.1323*a
-    		+0.63245*a*a
-    		-86.49711*a*a*a
-    		-17.95706*a*a*a*a
-    		+848.9752*a*a*a*a*a
-    		+20.22682*a*a*a*a*a*a
-    		-2078.20943*a*a*a*a*a*a*a;
+    		-1.3268
+    		+41.0484*a
+    		+2.04995*a*a
+    		-55.02655*a*a*a
+    		-37.36914*a*a*a*a
+    		+443.73994*a*a*a*a*a
+    		+91.25246*a*a*a*a*a*a
+    		-880.77533*a*a*a*a*a*a*a;
 }
 //#endif
 
@@ -105,23 +109,26 @@ float alphaF(float a)
 
     adcRegs->ADCINTFLGCLR.bit.ADCINT1 = 1;      //Clear ADCINT1 flag reinitialize for next SOC
 
+    angArrCnt = 0;
+
+
     for(;;)
     {
         adcRes[0] = adcRead(0);
         adcRes[1] = adcRead(1);
         adcRes[2] = adcRead(2);
 
-        adcRes[3] = adcRead(3)-27;
-        adcRes[4] = adcRead(4)-24;
-        adcRes[6] = adcRead(6)-20;
+        adcRes[3] = adcRead(3);
+        adcRes[4] = adcRead(4);
+        adcRes[6] = adcRead(6);
 
         adcRes[8] = adcRead(8);
         adcRes[9] = adcRead(9);
         adcRes[10] = adcRead(10);
 
-        adcRes[11] = adcRead(11)-304;
-        adcRes[12] = adcRead(12)-24;
-        adcRes[14] = adcRead(14)-22;
+        adcRes[11] = adcRead(11);
+        adcRes[12] = adcRead(12);
+        adcRes[14] = adcRead(14);
         //      gyroVerify();
 
         makeTest();
@@ -264,12 +271,12 @@ __interrupt void cpu_timer0_isr(void)
     }
     //==========================================================0============================================
 
-    abc[0].data[0] = (adcRead(0)-2053.)/240.;
-    abc[0].data[1] = (adcRead(1)-2050.)/240.;//1819.
-    abc[0].data[2] = (adcRead(2)-2051.)/240.;
-    abc[1].data[0] = (adcRead(8)-2055.)/240.;
-    abc[1].data[1] = (adcRead(9)-2053.)/240.;
-    abc[1].data[2] = (adcRead(10)-2057.)/240.;
+    abc[0].data[0] = (double)((adcRead(0)-2044)) /240.;
+    abc[0].data[1] = (double)((adcRead(1)-2051)) /240.;//1819.
+    abc[0].data[2] = (double)((adcRead(2)-2051)) /240.;
+    abc[1].data[0] = (double)((adcRead(8)-2039)) /240.;
+    abc[1].data[1] = (double)((adcRead(9)-2044)) /240.;
+    abc[1].data[2] = (double)((adcRead(10)-2045)) /240.;
 
 //    GPIO_setLow(gpioS,LED3);
 
@@ -387,27 +394,44 @@ __interrupt void cpu_timer2_isr(void)
 
     if(GPIO_read(gpioS, PS_ACK))
     {
-        mcbspData = mcbsp_read(0x00);
-        if(mcbspData.data1&0x1000)
+//        mcbspData = mcbsp_read(0x00);
+//        if(mcbspData.data1&0x1000)
             apsL = mcbsp_read(0x1D).data1;
-        if(mcbspData.data1&0x2000)
+//        if(mcbspData.data1&0x2000)
             apsR = mcbsp_read(0x1F).data1;
 
         alpha = (apsL*1.-apsR*1.)/1./(apsL*1.+apsR*1.);
         alpha1 = alpha;
         alpha = alphaF(alpha);
+        if(angArrCnt<angArrAvr)
+        {
+            angArr[angArrCnt] = alpha*100;
+            angArrCnt++;
+        }
+        else
+        {
+            for(i = 0; i<angArrAvr-1; i++)
+                angArr[i] = angArr[i+1];
+            angArr[angArrAvr-1] = alpha*100;
+        }
+        if(angArrCnt<angArrAvr)
+            saadFrameSend.POSITION.all = (alpha*100);
 
-//        saadFrameSend.POSITION.all = (alpha1*10000);
-        saadFrameSend.POSITION.all = (alpha*100);
+        else
+        {
+            saadFrameSend.POSITION.all = 0;
+            for(i = 0; i<angArrAvr; i++)
+                saadFrameSend.POSITION.all += angArr[i];
+            saadFrameSend.POSITION.all /= angArrAvr;
+        }
     }
-//    GPIO_setLow(gpioS,LED2);
+//    saadFrameSend.POSITION.all = (alpha1*10000);
 
     if(spiaRegs->SPIFFRX.bit.RXFFST == 4)
     {
         SPI_RX_isr();
         gyroUpdateData();
     }
-//    GPIO_setLow(gpioS,LED2);
 
     interrupS->PIEACK.all = PIEACK_GROUP1;
 }
@@ -479,18 +503,18 @@ __interrupt void cpu_timer1_isr(void)
                     saadFrameResive.POSITION.all = saadFrameResive.DATA.all;
                     if(SAAD_CTRL_ALL.CTRL.bit.SCAN)
                     {
-                        pidQ[0].OutIMax = 0.7;
-                        pidQ[0].OutIMin = -0.7;
-                        pidQ[1].OutIMax = 0.7;
-                        pidQ[1].OutIMin = -0.7;
+                        pidQ[0].OutIMax = 0.8;
+                        pidQ[0].OutIMin = -0.8;
+                        pidQ[1].OutIMax = 0.8;
+                        pidQ[1].OutIMin = -0.8;
                         acel = 800.;
                     }
                     else
                     {
-                        pidQ[0].OutIMax = 0.5;
-                        pidQ[0].OutIMin = -0.5;
-                        pidQ[1].OutIMax = 0.5;
-                        pidQ[1].OutIMin = -0.5;
+                        pidQ[0].OutIMax = 0.1;
+                        pidQ[0].OutIMin = -0.1;
+                        pidQ[1].OutIMax = 0.1;
+                        pidQ[1].OutIMin = -0.1;
                         acel = 200.;
                     }
                     mode = GoPositionMode;
@@ -546,10 +570,10 @@ __interrupt void cpu_timer1_isr(void)
                                 sendSCI = 1;
                                 lockDevEn = 1;
                                 lockDevSend = 0;
-                                pidQ[0].OutIMax = 0.5;
-                                pidQ[0].OutIMin = -0.5;
-                                pidQ[1].OutIMax = 0.5;
-                                pidQ[1].OutIMin = -0.5;
+                                pidQ[0].OutIMax = 0.3;
+                                pidQ[0].OutIMin = -0.3;
+                                pidQ[1].OutIMax = 0.3;
+                                pidQ[1].OutIMin = -0.3;
                                 lockDevStepCount = 220;
                             }
                             else
@@ -568,10 +592,10 @@ __interrupt void cpu_timer1_isr(void)
                                     sendSCI = 1;
                                     lockDevEn = 1;
                                     lockDevSend = 0;
-                                    pidQ[0].OutIMax = 0.5;
-                                    pidQ[0].OutIMin = -0.5;
-                                    pidQ[1].OutIMax = 0.5;
-                                    pidQ[1].OutIMin = -0.5;
+                                    pidQ[0].OutIMax = 0.1;
+                                    pidQ[0].OutIMin = -0.1;
+                                    pidQ[1].OutIMax = 0.1;
+                                    pidQ[1].OutIMin = -0.1;
                                     lockDevStepCount = 220;
                                 }
                                 else

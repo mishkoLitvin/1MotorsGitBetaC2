@@ -46,7 +46,7 @@ void timerSConfig()
 void ConfigCpuTimer0()
 {
 	int Freq = 90;
-	long Period = 560;
+	long Period = 500;
 	Uint32 PeriodInClocks = (long) (Freq * Period);
 	CpuTimer0Regs->PRD.all = PeriodInClocks - 1; // Counter decrements PRD+1 times each period
 
